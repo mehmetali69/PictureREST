@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class DataLoader implements CommandLineRunner {
 
     @Autowired
-    public static PictureRepository pictureRepository;
+    public PictureRepository pictureRepository;
 
     @Override
     public void run(String... args) throws Exception {
