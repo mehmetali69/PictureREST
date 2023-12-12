@@ -16,7 +16,11 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Picture myPic = new Picture(2345L,"TestTitle","Test Description...", LocalDateTime.now());
+        Picture myPic = new Picture("TestTitle","Test Description...", LocalDateTime.now());
+        Picture myPic2 = new Picture("2TestTitle","2Test Description...", LocalDateTime.now());
         pictureRepository.save(myPic);
+        pictureRepository.save(myPic2);
+        System.out.println(pictureRepository.findById(1L));
+
     }
 }

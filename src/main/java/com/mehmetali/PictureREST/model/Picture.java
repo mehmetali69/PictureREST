@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 @Table(name = "pictures")
 public class Picture {
 
-    public Picture(long id, String title, String description, LocalDateTime created) {
-        this.id = id;
+    public Picture(String title, String description, LocalDateTime created) {
+
         this.title = title;
         this.description = description;
         this.created = created;
@@ -55,7 +55,7 @@ public class Picture {
         this.description = description;
     }
 
-    public LocalDateTime isCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
