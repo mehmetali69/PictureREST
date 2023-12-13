@@ -19,21 +19,37 @@ public class PictureController {
     @Autowired
     private PictureRepository pictureRepository;
 
+    // alle Bilder zurueckgeben
     @GetMapping(value = "/pictures")
     public List<Picture> getPictures(){
         return pictureRepository.findAll();
     }
 
+    // Bild anhand ID zurueckgeben
     @GetMapping(value = "/pictures/{id}")
     public Optional<Picture> getPictureById(@PathVariable Long id){
         return pictureRepository.findById(id);
     }
 
-/*    @GetMapping(value = "/pictures/new")
+    // Vorhandenes Bild ändern
+    @PutMapping(value = "/pictures/{id}")
+    public ResponseEntity<Picture> updatePicture(@PathVariable Long id, @RequestBody Picture newPicture){
+        Picture oldPicture = pictureRepository.findById(id).get();
+        oldPicture.setTitle(newPicture.getTitle());
+        oldPicture.setDescription(newPicture.getDescription());
+        oldPicture.setCreated(newPicture.getCreated());
+
+        return new ResponseEntity<>(pictureRepository.save(oldPicture), HttpStatus.OK);
+    }
+
+    /*
+    // Test Methode
+    @GetMapping(value = "/pictures/new")
     public Optional<Picture> getPictureById(){
         return pictureRepository.findById(2l);
     }*/
 
+    // neues Bild anlegen
     @PostMapping(value = "/pictures/new",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -14,13 +14,16 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     public PictureRepository pictureRepository;
 
+    // DB mit Beispieldaten füllen beim StartUp
     @Override
     public void run(String... args) throws Exception {
-        Picture myPic = new Picture("TestTitle","Test Description...", LocalDateTime.now());
-        Picture myPic2 = new Picture("2TestTitle","2Test Description...", LocalDateTime.now());
+        Picture myPic = new Picture("TestTitle","Test Description...of the first picture", LocalDateTime.now());
+        Picture myPic2 = new Picture("2.Bild - Titel","Zweite Beschreibung...", LocalDateTime.now());
+        Picture myPic3 = new Picture("3.Bild - Titel","Dritte Beschreibung...", LocalDateTime.now().minusDays(1L));
         pictureRepository.save(myPic);
         pictureRepository.save(myPic2);
-        System.out.println(pictureRepository.findById(1L));
+        pictureRepository.save(myPic3);
+        //System.out.println(pictureRepository.findById(1L));
 
     }
 }
