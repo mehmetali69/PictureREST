@@ -38,6 +38,8 @@ public class PictureController {
         oldPicture.setTitle(newPicture.getTitle());
         oldPicture.setDescription(newPicture.getDescription());
         oldPicture.setCreated(newPicture.getCreated());
+        oldPicture.setTags(newPicture.getTags());
+        oldPicture.setData(newPicture.getData());
 
         return new ResponseEntity<>(pictureRepository.save(oldPicture), HttpStatus.OK);
     }

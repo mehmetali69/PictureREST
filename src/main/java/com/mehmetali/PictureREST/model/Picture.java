@@ -3,17 +3,21 @@ package com.mehmetali.PictureREST.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pictures")
 public class Picture {
 
-    public Picture(String title, String description, LocalDateTime created) {
-
+    public Picture(String title, String description, LocalDateTime created, List<String> tags, byte[] data) {
         this.title = title;
         this.description = description;
         this.created = created;
+        this.tags = tags;
+        this.data = data;
     }
+
+
 
     public Picture() {
     }
@@ -30,6 +34,29 @@ public class Picture {
 
     @Column(name = "created")
     private LocalDateTime created;
+    @Convert(converter = StringListConverter.class)
+    @Column(name = "tags", nullable = false)
+    private List<String> tags;
+
+    @Column(name = "data")
+    private byte[] data;
+
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
 
     public long getId() {
         return id;
